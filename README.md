@@ -1,0 +1,1 @@
+[![Build](https://github.com/bandomatteo/MTSS-2/actions/workflows/build.yml/badge.svg)](https://github.com/bandomatteo/MTSS-2/actions/workflows/build.yml)
