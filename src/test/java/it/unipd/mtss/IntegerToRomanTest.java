@@ -80,6 +80,63 @@ public class IntegerToRomanTest {
         assertEquals(expectedOutput, actualOutput);
     }
 
+    // Test: convertire 400 in "CD"
+    @Test
+    public void Convert_Number400ToRoman_CD() {
+        // Arrange
+        int input = 400;
+        String expectedOutput = "CD";
+
+        // Act
+        String actualOutput = IntegerToRoman.convert(input);
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    // Test: convertire 399 in "CCCXCIX"
+    @Test
+    public void Convert_Number399ToRoman_CCCXCIX() {
+        // Arrange
+        int input = 399;
+        String expectedOutput = "CCCXCIX";
+
+        // Act
+        String actualOutput = IntegerToRoman.convert(input);
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    // Test: convertire 888 in "DCCCLXXXVIII"
+    @Test
+    public void Convert_Number888ToRoman_DCCCLXXXVIII() {
+        // Arrange
+        int input = 888;
+        String expectedOutput = "DCCCLXXXVIII";
+
+        // Act
+        String actualOutput = IntegerToRoman.convert(input);
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    // Test: convertire 1000 in "M"
+    @Test
+    public void Convert_Number1000ToRoman_M() {
+        // Arrange
+        int input = 1000;
+        String expectedOutput = "M";
+
+        // Act
+        String actualOutput = IntegerToRoman.convert(input);
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void Convert_NumbeIfBiggerThan1000_ExceptionThrown() {
         // Arrange
@@ -123,7 +180,8 @@ public class IntegerToRomanTest {
         assertEquals(integerToRoman.getClass(), IntegerToRoman.class);
 
     }
-// Test: Controlla che il metodo convert ritorni una stringa
+
+    // Test: Controlla che il metodo convert ritorni una stringa
     @Test
     public void Convert_ReturnString() {
         // Arrange
@@ -141,6 +199,18 @@ public class IntegerToRomanTest {
     public void Convert_NumbeIfString_ExceptionThrown() {
         // Arrange
         String input = "ciao";
+
+        // Act
+        IntegerToRoman.convert(Integer.parseInt(input));
+
+        // Assert
+        fail();
+    }
+
+    @Test(expected = java.lang.NumberFormatException.class)
+    public void Convert_NumbeIfStringWithNumber_ExceptionThrown() {
+        // Arrange
+        String input = "1ciao";
 
         // Act
         IntegerToRoman.convert(Integer.parseInt(input));
