@@ -24,7 +24,7 @@ public class RomanPrinterTest {
         RomanPrinter.print(1001);
     }
     @Test
-    public void PrintNumberOne_AsciiArt_I(){
+    public void PrintNumberOne_AsciiArt_I()
         //Arrange
         try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
             utilities.when(() -> IntegerToRoman.convert(1)).thenReturn("I");
@@ -114,6 +114,7 @@ public class RomanPrinterTest {
         assertEquals(expectedOutput, actualOutput);
     }
 
+
     @Test
     public void PrintNumberFiveHundred_AsciiArt_D(){
         //Arrange
@@ -185,10 +186,5 @@ public class RomanPrinterTest {
         String actualOutput=RomanPrinter.print(468);
         //Assert
         assertEquals(expectedOutput, actualOutput);
-    }
-
-    @Test
-    public void prova(){
-        System.out.println(RomanPrinter.print(468));
     }
 }

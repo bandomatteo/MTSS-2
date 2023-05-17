@@ -54,6 +54,7 @@ public class RomanPrinter {
             "  | |        ",
             "  | |_____   ",
             "   \\_____|   "};
+
         String[] D={
             "  |  __ \\    ",
             "  | |  | |   ",
@@ -66,6 +67,7 @@ public class RomanPrinter {
             "  | |\\/| |    ",
             "  | |  | |   ",
             "  |_|  |_|   "};
+
        
         asciiArtNumerals.put("I",I);
         asciiArtNumerals.put("V",V);
