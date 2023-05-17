@@ -21,25 +21,47 @@ public class RomanPrinter {
             "  | |  ", 
             "  | |  ",  
             "|_____|"};
-        String[] V={"\\ \\    / /"," \\ \\  / / ","  \\ \\/ /  ","   \\  /   ","    \\/    "};
-        String[] L={" | |     "," | |     "," | |     "," | |     "," |______|"};
-        String[] C={"  / ____|"," | |     "," | |     "," | |     ","  \\_____|"};
+        String[] V={
+            "\\ \\    / /",
+            " \\ \\  / / ",
+            "  \\ \\/ /  ",
+            "   \\  /    ",
+            "    \\/     "};
+        String[] X={
+            " \\ \\ / /",
+            "  \\ V / ",
+            "   > <  ", 
+            "  / . \\ ",
+            " /_/ \_\\"}
+        String[] L={
+            " | |     ",
+            " | |     ",
+            " | |     ",
+            " | |     ",
+            " |______|"};
+        String[] C={
+            "  / ____|",
+            " | |     ",
+            " | |     ",
+            " | |     ",
+            "  \\_____|"};
+       
         asciiArtNumerals.put("I",I);
         asciiArtNumerals.put("V",V);
+        asciiArtNumerals.put("X",X),
         asciiArtNumerals.put("L",L);
         asciiArtNumerals.put("C",C);
 
-        String output="";
+        StringBuilder output = new StringBuilder();
+        output.append("\n");
         for(int i = 0; i < 5; i++){
-            for(int j=0;j<romanNumber.length();j++){
+            for(int j=0;j<romanNumber.length;j++){
                 String RomanLetter=String.valueOf(romanNumber.charAt(j));
                 String[] AsciiArt=asciiArtNumerals.get(RomanLetter);
-                output.concat(AsciiArt[i]);
+                output.append(AsciiArt[i]);
             }
-            output.concat("\n");
+            output.append("\n");
         }
-        
-
         return output;
     }
 }
