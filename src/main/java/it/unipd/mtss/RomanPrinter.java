@@ -32,7 +32,7 @@ public class RomanPrinter {
             "  \\ V / ",
             "   > <  ", 
             "  / . \\ ",
-            " /_/ \_\\"}
+            " /_/ \_\\"};
         String[] L={
             " | |     ",
             " | |     ",
