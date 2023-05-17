@@ -14,7 +14,7 @@ import org.mockito.Mockito;
 public class RomanPrinterTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void printBiggerThanCI_ExceptionThrown() {
+    public void printBiggerThanC_ExceptionThrown() {
         // Arrange
         try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
             utilities.when(() -> IntegerToRoman.convert(101)).thenReturn("CI");
