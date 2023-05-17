@@ -6,27 +6,35 @@ package it.unipd.mtss;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.fail;
-// import static org.mockito.Mock;
-// import static org.mockito.Mockito.when;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
-import org.junit.Ignore;
-import org.junit.Test;
+
 
 public class RomanPrinterTest {
 
-    
+    @Test(expected = IllegalArgumentException.class)
+    public void printBiggerThanM_ExceptionThrown() {
+        // Arrange
+        try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
+            utilities.when(() -> IntegerToRoman.convert(1001)).thenReturn("MI");
+        }
+
+        // Act
+        RomanPrinter.print(1001);
+    }
     @Test
     public void PrintNumberOne_AsciiArt_I(){
         //Arrange
-        // IntegerToRoman integerToRomanMock = Mockito.mock(IntegerToRoman.class);
-        // Mockito.when(integerToRomanMock.convert(1)).thenReturn("I");
-        String expectedOutput=
-            "|_   _|\n" + 
-            "  | |  \n" +
-            "  | |  \n" +
-            "  | |  \n" +
-            "|_____|\n";
+        try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
+            utilities.when(() -> IntegerToRoman.convert(5)).thenReturn("I");
+        }
+        String expectedOutput="\n"+
+        "   |_   _|   \n"+ 
+        "     | |     \n"+ 
+        "     | |     \n"+ 
+        "     | |     \n"+  
+        "   |_____|   \n";
         //Act
         String actualOutput=RomanPrinter.print(1);
         //Assert
@@ -37,12 +45,15 @@ public class RomanPrinterTest {
     @Test
     public void PrintNumberFive_AsciiArt_V(){
         //Arrange
-        String expectedOutput=
-            "\\ \\    / /\n"+
-            " \\ \\  / / \n"+
-            "  \\ \\/ /  \n"+
-            "   \\  /    \n"+
-            "    \\/     \n";
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(5)).thenReturn("V");
+        }
+        String expectedOutput="\n"+
+        " \\ \\    / /  \n"+
+        "  \\ \\  / /   \n"+
+        "   \\ \\/ /    \n"+
+        "    \\  /     \n"+
+        "     \\/      \n";
         //Act
         String actualOutput=RomanPrinter.print(5);
         //Assert
@@ -52,12 +63,15 @@ public class RomanPrinterTest {
     @Test
     public void PrintNumberTen_AsciiArt_X(){
         //Arrange
-        String expectedOutput=
-            " \\ \\ / / \n"+
-            "  \\ V /  \n"+
-            "   > <   \n"+
-            "  / . \\  \n"+
-            " /_/ \_\\ \n";
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(10)).thenReturn("X");
+        }
+        String expectedOutput="\n"+
+        "  \\ \\ / /    \n"+
+        "   \\ V /     \n"+
+        "    > <      \n"+ 
+        "   / . \\     \n"+
+        "  /_/ \\_\\    \n";
         //Act
         String actualOutput=RomanPrinter.print(10);
         //Assert
@@ -65,16 +79,19 @@ public class RomanPrinterTest {
     }
     
     @Test
-    public void PrintNumberFifty_AsciiArt_L(50){
+    public void PrintNumberFifty_AsciiArt_L(){
         //Arrange
-        String expectedOutput=
-            " | |     \n"+
-            " | |     \n"+
-            " | |     \n"+
-            " | |     \n"+
-            " |______|\n";
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(50)).thenReturn("L");
+        }
+        String expectedOutput="\n"+
+        "  | |        \n"+
+        "  | |        \n"+
+        "  | |        \n"+
+        "  | |____    \n"+
+        "  |______|   \n";
         //Act
-        String actualOutput=RomanPrinter.print();
+        String actualOutput=RomanPrinter.print(50);
         //Assert
         assertEquals(expectedOutput, actualOutput);
     }
@@ -82,27 +99,73 @@ public class RomanPrinterTest {
     @Test
     public void PrintNumberOneHundred_AsciiArt_C(){
         //Arrange
-        String expectedOutput=
-            "  / ____|\n"+
-            " | |     \n"+
-            " | |     \n"+
-            " | |     \n"+
-            "  \\_____|\n";
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(100)).thenReturn("C");
+        }
+        String expectedOutput="\n"+
+        "  / ____|    \n"+
+        "  | |        \n"+
+        "  | |        \n"+
+        "  | |_____   \n"+
+        "   \\_____|   \n";
         //Act
         String actualOutput=RomanPrinter.print(100);
         //Assert
         assertEquals(expectedOutput, actualOutput);
     }
-    /*
-    @Ignore
+
     @Test
-    public void PrintNumberEightyNine_AsciiArt_IXC(){
+    public void PrintNumberFiveHundred_AsciiArt_D(){
         //Arrange
-        String expectedOutput="";
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(500)).thenReturn("D");
+        }
+        String expectedOutput="\n"+
+        "  |  __ \\    \n"+
+        "  | |  | |   \n"+
+        "  | |  | |   \n"+
+        "  | |__| |   \n"+
+        "  |_____/    \n";
         //Act
-        String actualOutput=RomanPrinter.print();
+        String actualOutput=RomanPrinter.print(500);
         //Assert
         assertEquals(expectedOutput, actualOutput);
-    }*/
-}
+    }
 
+    @Test
+    public void PrintNumberOneThousand_AsciiArt_M(){
+        //Arrange
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(1000)).thenReturn("M");
+        }
+        String expectedOutput="\n"+
+        "  |  \\/  |    \n"+
+        "  | \\  / |    \n"+
+        "  | |\\/| |    \n"+
+        "  | |  | |   \n"+
+        "  |_|  |_|   \n";
+        //Act
+        String actualOutput=RomanPrinter.print(1000);
+        //Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+    
+    
+    @Test
+    public void PrintNumberEightyNine_AsciiArt_LXXXIX(){
+        //Arrange
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(89)).thenReturn("LXXXIX");
+        }
+        String expectedOutput="\n"+
+    "  | |          \\ \\ / /      \\ \\ / /      \\ \\ / /       |_   _|     \\ \\ / /    \n"+
+    "  | |           \\ V /        \\ V /        \\ V /          | |        \\ V /     \n"+
+    "  | |            > <          > <          > <           | |         > <      \n"+
+    "  | |____       / . \\        / . \\        / . \\          | |        / . \\     \n"+
+    "  |______|     /_/ \\_\\      /_/ \\_\\      /_/ \\_\\       |_____|     /_/ \\_\\    \n";
+        //Act
+        String actualOutput=RomanPrinter.print(89);
+        //Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+}
