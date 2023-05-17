@@ -168,4 +168,27 @@ public class RomanPrinterTest {
         //Assert
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void PrintNumberFourHundredSixtyEight_AsciiArt_CDLXVIII(){
+        //Arrange
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(468)).thenReturn("CDLXVIII");
+        }
+        String expectedOutput="\n"+
+    "  / ____|      |  __ \\      | |          \\ \\ / /     \\ \\    / /     |_   _|      |_   _|      |_   _|   \n"+   
+    "  | |          | |  | |     | |           \\ V /       \\ \\  / /        | |          | |          | |     \n"+ 
+    "  | |          | |  | |     | |            > <         \\ \\/ /         | |          | |          | |     \n"+
+    "  | |_____     | |__| |     | |____       / . \\         \\  /          | |          | |          | |     \n"+
+    "   \\_____|     |_____/      |______|     /_/ \\_\\         \\/         |_____|      |_____|      |_____|   \n";
+        //Act
+        String actualOutput=RomanPrinter.print(468);
+        //Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void prova(){
+        System.out.println(RomanPrinter.print(468));
+    }
 }
