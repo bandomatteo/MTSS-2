@@ -12,7 +12,19 @@ import org.mockito.Mockito;
 
 
 public class RomanPrinterTest {
-
+    
+    @Test 
+    public void Instanciate_ClassRomanPrinter() { 
+        // Arrange 
+        RomanPrinter romanPrinter; 
+ 
+        // Act 
+        romanPrinter = new RomanPrinter(); 
+ 
+        // Assert 
+        assertEquals(romanPrinter.getClass(), RomanPrinter.class); 
+ 
+    }
     @Test(expected = IllegalArgumentException.class)
     public void printBiggerThanC_ExceptionThrown() {
         // Arrange
@@ -23,6 +35,18 @@ public class RomanPrinterTest {
         // Act
         RomanPrinter.print(101);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void printNotRoman_ExceptionThrown() {
+        // Arrange
+        try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
+            utilities.when(() -> IntegerToRoman.convert(99999)).thenReturn("KK");
+        }
+
+        // Act
+        RomanPrinter.print(99999);
+    }
+
     @Test
     public void PrintNumberOne_AsciiArt_I(){
         //Arrange
