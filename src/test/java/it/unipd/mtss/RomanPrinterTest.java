@@ -27,7 +27,7 @@ public class RomanPrinterTest {
     public void PrintNumberOne_AsciiArt_I(){
         //Arrange
         try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
-            utilities.when(() -> IntegerToRoman.convert(5)).thenReturn("I");
+            utilities.when(() -> IntegerToRoman.convert(1)).thenReturn("I");
         }
         String expectedOutput="\n"+
         "   |_   _|   \n"+ 
