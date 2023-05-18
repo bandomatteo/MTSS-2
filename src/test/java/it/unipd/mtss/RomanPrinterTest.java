@@ -14,7 +14,7 @@ import org.mockito.Mockito;
 public class RomanPrinterTest {
     
     @Test 
-    public void Instanciate_ClassRomanPrinter() { 
+    public void Instanciate_ClassRomanPrinter_true() { 
         // Arrange 
         RomanPrinter romanPrinter; 
  
