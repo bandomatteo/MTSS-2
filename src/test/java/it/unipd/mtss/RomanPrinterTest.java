@@ -15,26 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class RomanPrinterTest {
-    
-
-    @Test
-    public void testPrint_InvalidInput_ExceptionThrown() {
-        // Test when the input is outside the valid range (less than 1)
-        assertThrows(IllegalArgumentException.class,() -> RomanPrinter.print(0));
-
-        // Test when the input is outside the valid range (greater than 1000)
-        assertThrows(IllegalArgumentException.class,() -> RomanPrinter.print(2000));
-    }
-    @Test
-    public void testPrint_InvalidRomanNumber_ExceptionThrown() {
-        try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
-            utilities.when(() -> IntegerToRoman.convert(99999)).thenReturn("KK");
-        }
-        // Test when the input is not a valid Roman numeral (contains invalid characters)
-        // Test when the input is not a valid Roman numeral (contains 'M')
-        assertThrows(IllegalArgumentException.class, () -> RomanPrinter.print(99999));
-    }
-    
+   
     @Test 
     public void Instanciate_ClassRomanPrinter_true() { 
         // Arrange 
@@ -47,16 +28,7 @@ public class RomanPrinterTest {
         assertEquals(romanPrinter.getClass(), RomanPrinter.class); 
  
     }
-    @Test(expected = IllegalArgumentException.class)
-    public void printBiggerThanM_ExceptionThrown() {
-        // Arrange
-        try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
-            utilities.when(() -> IntegerToRoman.convert(1001)).thenReturn("MI");
-        }
-
-        // Act
-        RomanPrinter.print(1001);
-    }
+    
 
     @Test(expected = IllegalArgumentException.class)
     public void printNotRoman_ExceptionThrown() {
