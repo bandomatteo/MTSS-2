@@ -15,9 +15,6 @@ public class RomanPrinter {
     }
 
     private static String printAsciiArt(String romanNumber){
-        if(romanNumber.isEmpty() || !Pattern.matches("^[IVXLCDM]{1,3}$*",romanNumber)){
-            throw new IllegalArgumentException("Number must be between 1 and 1000");
-        }
         
         if(!Pattern.matches("^[IVXLCDM]+$", romanNumber)){
             throw new IllegalArgumentException("Not a Roman Number");
