@@ -26,14 +26,14 @@ public class RomanPrinterTest {
  
     }
     @Test(expected = IllegalArgumentException.class)
-    public void printBiggerThanC_ExceptionThrown() {
+    public void printBiggerThanM_ExceptionThrown() {
         // Arrange
         try(MockedStatic<IntegerToRoman> utilities = Mockito.mockStatic(IntegerToRoman.class)) {
-            utilities.when(() -> IntegerToRoman.convert(101)).thenReturn("CI");
+            utilities.when(() -> IntegerToRoman.convert(1001)).thenReturn("MI");
         }
 
         // Act
-        RomanPrinter.print(101);
+        RomanPrinter.print(1001);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -137,6 +137,43 @@ public class RomanPrinterTest {
         //Assert
         assertEquals(expectedOutput, actualOutput);
     }
+
+
+    @Test
+    public void PrintNumberFiveHundred_AsciiArt_D(){
+        //Arrange
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(500)).thenReturn("D");
+        }
+        String expectedOutput="\n"+
+        "  |  __ \\    \n"+
+        "  | |  | |   \n"+
+        "  | |  | |   \n"+
+        "  | |__| |   \n"+
+        "  |_____/    \n";
+        //Act
+        String actualOutput=RomanPrinter.print(500);
+        //Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void PrintNumberOneThousand_AsciiArt_M(){
+        //Arrange
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(1000)).thenReturn("M");
+        }
+        String expectedOutput="\n"+
+        "  |  \\/  |    \n"+
+        "  | \\  / |    \n"+
+        "  | |\\/| |    \n"+
+        "  | |  | |   \n"+
+        "  |_|  |_|   \n";
+        //Act
+        String actualOutput=RomanPrinter.print(1000);
+        //Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
     
     
     @Test
@@ -153,6 +190,24 @@ public class RomanPrinterTest {
     "  |______|     /_/ \\_\\      /_/ \\_\\      /_/ \\_\\       |_____|     /_/ \\_\\    \n";
         //Act
         String actualOutput=RomanPrinter.print(89);
+        //Assert
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void PrintNumberFourHundredSixtyEight_AsciiArt_CDLXVIII(){
+        //Arrange
+        try(MockedStatic<IntegerToRoman> utilities =Mockito.mockStatic(IntegerToRoman.class)){
+            utilities.when(() -> IntegerToRoman.convert(468)).thenReturn("CDLXVIII");
+        }
+        String expectedOutput="\n"+
+    "  / ____|      |  __ \\      | |          \\ \\ / /     \\ \\    / /     |_   _|      |_   _|      |_   _|   \n"+   
+    "  | |          | |  | |     | |           \\ V /       \\ \\  / /        | |          | |          | |     \n"+ 
+    "  | |          | |  | |     | |            > <         \\ \\/ /         | |          | |          | |     \n"+
+    "  | |_____     | |__| |     | |____       / . \\         \\  /          | |          | |          | |     \n"+
+    "   \\_____|     |_____/      |______|     /_/ \\_\\         \\/         |_____|      |_____|      |_____|   \n";
+        //Act
+        String actualOutput=RomanPrinter.print(468);
         //Assert
         assertEquals(expectedOutput, actualOutput);
     }

@@ -15,11 +15,11 @@ public class RomanPrinter {
     }
 
     private static String printAsciiArt(String romanNumber){
-        if(romanNumber.isEmpty() || !Pattern.matches("^(?!.*C\\S).*",romanNumber)){
-            throw new IllegalArgumentException("Number must be between 1 and 100");
+        if(romanNumber.isEmpty() || !Pattern.matches("^(?!.*M\\S).*",romanNumber)){
+            throw new IllegalArgumentException("Number must be between 1 and 1000");
         }
         
-        if(!Pattern.matches("^[IVXLC]+$", romanNumber)){
+        if(!Pattern.matches("^[IVXLCDM]+$", romanNumber)){
             throw new IllegalArgumentException("Not a Roman Number");
         }
         
@@ -54,12 +54,28 @@ public class RomanPrinter {
             "  | |        ",
             "  | |_____   ",
             "   \\_____|   "};
+
+        String[] D={
+            "  |  __ \\    ",
+            "  | |  | |   ",
+            "  | |  | |   ",
+            "  | |__| |   ",
+            "  |_____/    "};
+        String[] M={
+            "  |  \\/  |    ",
+            "  | \\  / |    ",
+            "  | |\\/| |    ",
+            "  | |  | |   ",
+            "  |_|  |_|   "};
+
        
         asciiArtNumerals.put("I",I);
         asciiArtNumerals.put("V",V);
         asciiArtNumerals.put("X",X);
         asciiArtNumerals.put("L",L);
         asciiArtNumerals.put("C",C);
+        asciiArtNumerals.put("D",D);
+        asciiArtNumerals.put("M",M);
 
         StringBuilder output = new StringBuilder();
         output.append("\n");
